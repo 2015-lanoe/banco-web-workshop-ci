@@ -28,16 +28,7 @@ jobs:
       - name: Executar os testes
         run:  npx cypress run
         
-      - name: Gerar relatório HTML com mochawesome
-        run: |
-          npx mochawesome-merge cypress/reports/*.json > mochawesome.json
-          npx mochawesome-report-generator mochawesome.json -o mochawesome-report
-
-      - name: Fazer upload do relatório como artefato
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-report
-          path: mochawesome-report
+      
 
 
 
