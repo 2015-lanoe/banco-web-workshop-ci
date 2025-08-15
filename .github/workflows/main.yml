@@ -1,0 +1,37 @@
+name: 'Banco Web CI'
+
+# gatilhos / triggers
+on: 
+   workflow_dispatch:
+
+jobs: 
+  tests:
+    runs-on: ubuntu-latest # maquina onde eu vou executar
+
+    env: 
+      API_BASE_URL: 'http://localhost:3000'
+      PORT: 4000
+
+    steps:
+      - name: checkout do repositório
+        uses: actions/checkout@v4     # essa action clona o projeto para dentro da maquina ubuntu
+        
+      - name: instalar deps
+        run:  npm install  
+
+      - name: iniciar o servidor de mocks
+        run:  npm run mock-server  
+
+      - name: iniciar o servidor da aplicação
+        run:  npm run server 
+        
+      - name: Executar os testes
+        run:  npx cypress run    
+
+
+
+
+
+
+
+        
